@@ -1,0 +1,46 @@
+<!-- この画面は、データ前処理プロセスの各段階におけるスナップショットをアコーディオン形式で展開して詳細を確認できる機能と、
+最終的な予測結果のプレビュー表示を兼ね備えており、ユーザーは処理の経過を追跡した上で、完了した全予測結果をCSVファイルとして一括ダウンロード保存することができます。 -->
+
+
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">数据预处理快照</h1>
+
+<div class="accordion" id="snapshotsAccordion">
+  {% for name, table in snapshots.items() %}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading{{ loop.index }}">
+      <button class="accordion-button {% if not loop.first %}collapsed{% endif %}"
+              type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapse{{ loop.index }}"
+              aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"
+              aria-controls="collapse{{ loop.index }}">
+        {{ name }}
+      </button>
+    </h2>
+    <div id="collapse{{ loop.index }}"
+         class="accordion-collapse collapse {% if loop.first %}show{% endif %}"
+         aria-labelledby="heading{{ loop.index }}"
+         data-bs-parent="#snapshotsAccordion">
+      <div class="accordion-body">
+        <!-- 快照表格同样加上响应式容器 -->
+        <div class="table-responsive">
+          {{ table|safe }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<h2 class="mt-5">预测结果预览</h2>
+<!-- 预测结果表也包在 table-responsive 中 -->
+<div class="table-responsive mt-3 mb-4">
+  {{ result_table|safe }}
+</div>
+
+<div class="mt-4">
+  <a href="/download" class="btn btn-outline-primary">下载完整预测结果 CSV</a>
+  <a href="/" class="btn btn-secondary ms-2">返回</a>
+</div>
+{% endblock %}

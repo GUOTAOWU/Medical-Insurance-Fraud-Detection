@@ -1,0 +1,42 @@
+<!-- この画面は医療保険詐欺検知システムへの安全なアクセスを管理するためのログインページであり、
+ユーザーはアカウント名とパスワードに加え、クリックして更新可能な画像認証（キャプチャ）コードを入力して本人確認を行うことで、
+システム内部へログインする機能を提供しています。 -->
+
+
+{% extends "base.html" %}
+
+{% block title %}登录{% endblock %}
+{% block body_class %}login-page{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg" style="width: 360px;">
+    <div class="card-body">
+      <h3 class="card-title text-center mb-4">医保欺诈系统登录</h3>
+      <form method="post">
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-person-fill me-1"></i>用户名</label>
+          <input name="username" class="form-control form-control-lg" placeholder="请输入用户名" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-lock-fill me-1"></i>密码</label>
+          <input type="password" name="password" class="form-control form-control-lg" placeholder="请输入密码" required>
+        </div>
+        <div class="mb-3 row align-items-center">
+          <div class="col-6">
+            <label class="form-label"><i class="bi bi-shield-lock-fill me-1"></i>验证码</label>
+            <input name="captcha" class="form-control form-control-lg" placeholder="输入验证码" required>
+          </div>
+          <div class="col-6 text-center">
+            <img src="{{ url_for('captcha') }}" alt="captcha" class="mt-4" style="cursor:pointer;"
+                 onclick="this.src='{{ url_for('captcha') }}?'+Date.now()">
+          </div>
+        </div>
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-primary btn-lg">登录</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

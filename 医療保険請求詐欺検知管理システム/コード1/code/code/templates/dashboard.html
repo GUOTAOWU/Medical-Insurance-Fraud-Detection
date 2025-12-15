@@ -1,0 +1,47 @@
+<!-- このページはシステムのメインダッシュボードとして機能し、アカウント情報の確認・修正を行う「個人センター」、
+データの追加・編集・削除やインポート・エクスポートを一元管理する「データ管理」、およびデータをアップロードまたは選択して審査分析を実行する「審査予測」という3つの主要機能へ、
+直感的なカード形式のメニューから迅速にアクセスするためのナビゲーション画面です。 -->
+
+{% extends "base.html" %}
+{% block title %}首页{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4 text-center">后台功能导航</h1>
+  <div class="row g-4">
+    <div class="col-sm-6 col-md-4">
+      <a href="{{ url_for('personal') }}" class="text-decoration-none">
+        <div class="card card-hover text-center h-100">
+          <div class="card-body">
+            <i class="bi bi-person-circle display-4 mb-3 text-primary"></i>
+            <h5 class="card-title">个人中心</h5>
+            <p class="card-text text-muted">查看并修改账号信息</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <a href="{{ url_for('data_management') }}" class="text-decoration-none">
+        <div class="card card-hover text-center h-100">
+          <div class="card-body">
+            <i class="bi bi-table display-4 mb-3 text-success"></i>
+            <h5 class="card-title">数据管理</h5>
+            <p class="card-text text-muted">增删改查与导入导出</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-6 col-md-4">
+      <a href="{{ url_for('audit') }}" class="text-decoration-none">
+        <div class="card card-hover text-center h-100">
+          <div class="card-body">
+            <i class="bi bi-check2-square display-4 mb-3 text-danger"></i>
+            <h5 class="card-title">审核预测</h5>
+            <p class="card-text text-muted">上传/选择数据并进行预测</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!-- この画面は既存の保険金請求（理賠）記録の内容を編集・更新するためのページで、請求番号、ステータス、
+出険期間、給付項目、医療機関名、支払金額といった各フィールドには現在保存されているデータが予め入力された状態で表示されており、
+ユーザーは必要な箇所を修正した上で「変更を保存（保存修改）」ボタンを押下することで、データベース内の情報を最新の状態に更新することができます。 -->
+
+{% extends "base.html" %}
+{% block title %}编辑理赔记录{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">✏️ 编辑理赔记录</h2>
+<form method="post" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label">CL_NO</label>
+    <input name="cl_no" class="form-control" value="{{ record.cl_no }}" required>
+  </div>
+    <div class="col-md-6">
+    <label class="form-label">条层状态 (CL_LINE_STATUS)</label>
+    <input name="cl_line_status" class="form-control" value="{{ record.cl_line_status or '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">出险开始日期</label>
+    <input type="date" name="incur_date_from" class="form-control"
+           value="{{ record.incur_date_from.strftime('%Y-%m-%d') if record.incur_date_from else '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">出险结束日期</label>
+    <input type="date" name="incur_date_to" class="form-control"
+           value="{{ record.incur_date_to.strftime('%Y-%m-%d') if record.incur_date_to else '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">福利项目 (BEN_HEAD)</label>
+    <input name="ben_head" class="form-control" value="{{ record.ben_head or '' }}">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">疾病代码 (DIAG_CODE)</label>
+    <input name="diag_code" class="form-control" value="{{ record.diag_code or '' }}">
+  </div>
+  <div class="col-md-8">
+    <label class="form-label">条形码列表 (CODES)</label>
+    <input name="codes" class="form-control" value="{{ record.codes or '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">机构名称 (PROV_NAME)</label>
+    <input name="prov_name" class="form-control" value="{{ record.prov_name or '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">划账时间 (PAY_DATE)</label>
+    <input type="datetime-local" name="pay_date" class="form-control"
+           value="{{ record.pay_date.strftime('%Y-%m-%dT%H:%M') if record.pay_date else '' }}">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">赔付金额 (PAY_AMT)</label>
+    <input type="number" step="any" name="pay_amt" class="form-control"
+           value="{{ record.pay_amt or 0 }}" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary">保存修改</button>
+    <a href="{{ url_for('data_management') }}" class="btn btn-secondary ms-2">取消</a>
+  </div>
+</form>
+{% endblock %}

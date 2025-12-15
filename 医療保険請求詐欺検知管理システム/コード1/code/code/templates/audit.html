@@ -1,0 +1,25 @@
+<!-- この画面は審査予測を実行するためのページで、ユーザーは分析対象として新しいExcelファイルをアップロードするか、
+あるいはリストに表示された既存のデータから最大20件までをチェックボックスで選択し、
+それらに対して審査結果の予測処理を一括で実行することができます。 -->
+
+
+{% extends "base.html" %}
+{% block title %}审核{% endblock %}
+{% block content %}
+<h2>审核预测</h2>
+
+<form action="{{ url_for('audit') }}" method="post" enctype="multipart/form-data" class="mb-4">
+  <div class="mb-3">
+    <label>上传新数据（Excel）进行预测：</label>
+    <input type="file" name="file">
+  </div>
+  <hr>
+  <div class="mb-3">
+    <label>或从已有数据中选择（最多 20 条）：</label><br>
+    {% for r in claims %}
+      <input type="checkbox" name="claim_ids" value="{{ r.id }}"> {{ r.cl_no }}&nbsp;&nbsp;
+    {% endfor %}
+  </div>
+  <button class="btn btn-primary">运行预测</button>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!-- この画面はログイン中のユーザー情報を確認・管理するための「個人センター」ページであり、
+現在のアカウント名が表示されているほか、セキュリティ管理の一環として、
+既存のパスワードと新しいパスワード（確認用を含む）をフォームに入力し「送信（提交）」ボタンを押下することで、ログインパスワードを安全に変更する機能を提供しています。 -->
+
+
+{% extends "base.html" %}
+{% block title %}个人中心{% endblock %}
+{% block content %}
+<h2>个人中心</h2>
+<p>用户名：{{ current_user.username }}</p>
+<hr>
+<h4>修改密码</h4>
+<form method="post" class="w-50">
+  <div class="mb-3">
+    <label>旧密码</label>
+    <input type="password" name="old_pw" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>新密码</label>
+    <input type="password" name="new_pw" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>确认新密码</label>
+    <input type="password" name="confirm_pw" class="form-control" required>
+  </div>
+  <button class="btn btn-success">提交</button>
+</form>
+{% endblock %}

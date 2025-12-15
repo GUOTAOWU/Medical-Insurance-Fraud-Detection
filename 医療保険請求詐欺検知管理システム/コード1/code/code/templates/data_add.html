@@ -1,0 +1,52 @@
+<!-- この画面は新しい保険金請求（理賠）記録をシステムに手動で追加登録するためのページであり、
+ユーザーは請求番号（CL_NO）、出険期間、給付項目、診断コード、医療機関名、支払日時、および支払金額などの詳細情報をフォームに入力し、
+「追加（添加）」ボタンを押下することで新規データをデータベースに保存することができます。 -->
+
+{% extends "base.html" %}
+{% block title %}新增理赔记录{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">＋ 新增理赔记录</h2>
+<form method="post" class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label">CL_NO</label>
+    <input name="cl_no" class="form-control" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">出险开始日期</label>
+    <input type="date" name="incur_date_from" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">出险结束日期</label>
+    <input type="date" name="incur_date_to" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">福利项目 (BEN_HEAD)</label>
+    <input name="ben_head" class="form-control">
+  </div>
+  <div class="col-md-4">
+    <label class="form-label">疾病代码 (DIAG_CODE)</label>
+    <input name="diag_code" class="form-control">
+  </div>
+  <div class="col-md-8">
+    <label class="form-label">条形码列表 (CODES)</label>
+    <input name="codes" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">机构名称 (PROV_NAME)</label>
+    <input name="prov_name" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">划账时间 (PAY_DATE)</label>
+    <input type="datetime-local" name="pay_date" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">赔付金额 (PAY_AMT)</label>
+    <input type="number" step="any" name="pay_amt" class="form-control" required>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-success">添加</button>
+    <a href="{{ url_for('data_management') }}" class="btn btn-secondary ms-2">取消</a>
+  </div>
+</form>
+{% endblock %}

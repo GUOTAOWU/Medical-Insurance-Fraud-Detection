@@ -1,0 +1,32 @@
+<!-- この画面はテストデータをページ分割してプレビュー表示するための機能を提供しており、
+ユーザーは1ページあたりの表示行数や閲覧したいページ番号を指定して対象データをテーブル形式で効率的に確認した上で、
+最終的に「予測を実行（运行预测）」ボタンを押下することで、そのデータを用いた予測プロセスを開始することができます。 -->
+
+
+{% extends "base.html" %}
+{% block content %}
+<h1 class="mb-4">测试数据分页预览</h1>
+
+<form method="get" class="row g-3 mb-4">
+  <div class="col-auto">
+    <label>每页行数</label>
+    <input type="number" name="page_size" value="{{ page_size }}" min="5" max="100" class="form-control">
+  </div>
+  <div class="col-auto">
+    <label>页码</label>
+    <input type="number" name="page" value="{{ page }}" min="1" max="{{ total_pages }}" class="form-control">
+  </div>
+  <div class="col-auto align-self-end">
+    <button type="submit" class="btn btn-primary">刷新</button>
+  </div>
+</form>
+
+<!-- 这里包一层 table-responsive -->
+<div class="table-responsive mb-4">
+  {{ table|safe }}
+</div>
+
+<form action="/predict" method="post" class="mt-4">
+  <button type="submit" class="btn btn-success">运行预测</button>
+</form>
+{% endblock %}
