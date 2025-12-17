@@ -35,21 +35,21 @@ Project_Root
     ├── 📂 2 データ前処理、特徴量エンジニアリング (Preprocessing)
     │      ├── 📄 data-14-01.xlsx      # 初期（Raw）データ
     │      ├── 📄 processed_data.xlsx  # 一次クリーニング後のデータ
-    │      ├── 📄 最终数据.xlsx         # 前処理完了後の最終データ（学習に使用）
-    │      └── 📓 数据.ipynb            # 前処理ロジックを記述したJupyter Notebook
+    │      ├── 📄 最終データ.xlsx         # 前処理完了後の最終データ（学習に使用）
+    │      └── 📓 データ.ipynb            # 前処理ロジックを記述したJupyter Notebook
     │
     ├── 📂 3 機械学習 (Model Training)
     │      ├── 📓 model.ipynb          # モデル学習・比較・評価のコード
-    │      ├── 📄 最终数据.xlsx         # 学習に使用したデータセット
+    │      ├── 📄 最終データ.xlsx         # 学習に使用したデータセット
     │      ├── 📄 best_xgboost_model.pkl      # 【採用】最高精度のXGBoostモデル
     │      ├── 📄 optimized_xgboost_model.pkl # チューニング済みXGBoostモデル
     │      ├── 📄 best_traditional_model.pkl  # 比較用モデル（RandomForest等）
     │      └── 📄 mlp_model.pkl               # 比較用モデル（多層パーセプトロン）
     │
     └── 📂 4 結果予測 (Prediction & Validation)
-           ├── 📓 模型使用.ipynb            # 学習済みモデルを使用した予測テストのコード
-           ├── 📄 测试数据.xlsx             # テスト用生データ
-           ├── 📄 测试数据预处理结果.xlsx     # テストデータを前処理した結果
+           ├── 📓 モデル推論.ipynb            # 学習済みモデルを使用した予測テストのコード
+           ├── 📄 テストデータ.xlsx             # テスト用生データ
+           ├── 📄 前処理済みテストデータ.xlsx     # テストデータを前処理した結果
            └── 📄 best_xgboost_model.pkl    # 予測に使用するモデルファイル
 
 ## 3. データセット (Dataset)
